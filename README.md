@@ -1,9 +1,6 @@
 # Vagrant-DHCP
 En este documento, documentare paso a paso el proceso de instalacion de dhcp mediante vagrant.
 
-![alt text](image-2.png)
-
-
 ## Creacion de repositorio 
  En esta parte creamos las carpetas y iniciamos el git en esa carpeta.
 
@@ -37,6 +34,11 @@ alumnom@a209e:~/Vagrant-DHCP$
 
 ## Creacion de Vagrantfile
 Dentro del Vagrantfile añadimos lo siguiente. Aqui debemos de crear la mac para las maquinas que lo necesiten, luego debemos de en "vitualbox_intnet"  poner **intnet**, y la ip poner la de la imagen.
+
+Tambien debemos de añadir el fichero .vagrant al .gitignore.
+```
+echo ".vagrant/" >> .gitignore
+```
 
 ```
 Vagrant.configure("2") do |config|
@@ -91,4 +93,17 @@ Vagrant.configure("2") do |config|
   end
 
 end
+```
+Despues de realizar el archivo, realizamos el vagrant up para arrancar las maquinas. Aqui podemos observar las maquinas funcionando medieante vargrant status, una vez usado el comando de vagrant up.
+```
+ vagrant status
+Current machine states:
+
+srv                       running (virtualbox)
+c1                        running (virtualbox)
+printer                   running (virtualbox)
+
+This environment represents multiple VMs. The VMs are all listed
+above with their current state. For more information about a specific
+VM, run `vagrant status NAME`.
 ```
