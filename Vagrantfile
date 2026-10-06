@@ -1,12 +1,12 @@
 Vagrant.configure("2") do |config|
+  config.vm.box = "debian/bookworm64"
 
   # =========================
   # SERVIDOR DHCP
   # =========================
 
-    config.vm.define "srv" do |srv|
+  config.vm.define "srv" do |srv|
 
-    srv.vm.box = "debian/bookworm64"
 
     # Adaptador público
     srv.vm.network "public_network", bridge: "enp4s0"
@@ -25,7 +25,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "c1" do |c1|
 
-    c1.vm.box = "debian/bookworm64"
 
     c1.vm.network "private_network",
       type: "dhcp",
@@ -40,7 +39,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "printer" do |printer|
 
-    printer.vm.box = "debian/bookworm64"
 
     printer.vm.network "private_network",
       type: "dhcp",
