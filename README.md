@@ -291,18 +291,18 @@ lease 192.168.57.26 {
 ```
 
 ## Configuracion de impresora ip fija
-Para hacer que la impresora reciba siempre misma ip 192.168.57.111 para eso  primero entramos a la impresora mediante ``vagrant ssh printer``. Una vez dentro usamos ``ip link`` y buscamos la direccion MAC una vez la tengamos accedemos de nuevo a la maquina servidor y dentro del archivo **dchpd.config** alfinal añadimos otra cosa nueva, que servira para dar la ip fija mediante la MAC de la impresora.
+Para hacer que la impresora reciba siempre misma ip 192.168.57.100 para eso  primero entramos a la impresora mediante ``vagrant ssh printer``. Una vez dentro usamos ``ip link`` y buscamos la direccion MAC una vez la tengamos accedemos de nuevo a la maquina servidor y dentro del archivo **dchpd.config** alfinal añadimos otra cosa nueva, que servira para dar la ip fija mediante la MAC de la impresora.
 Para acceder a dicho archivo usamos ``sudo nano /etc/dhcp/dhcpd.conf``.
 
 ```
 host printer {
     hardware ethernet 08:00:27:aa:bb:cc;
-    fixed-address 192.168.57.111;
+    fixed-address 192.168.57.100;
 }
 ```
 Una vez realizado el cambio usamos  ``sudo systemctl restart isc-dhcp-server``.
 
-Ahora para ver que ha funcionado, nos dirigimos a la maquina impresora, liberamos la ip mediante ``sudo dhcpd -r`` y pedimos otra usando el comando ``sudo dhcpd `` y nos aseguramos de que nos hayan dado la IP deseada 192.168.57.111.
+Ahora para ver que ha funcionado, nos dirigimos a la maquina impresora, liberamos la ip mediante ``sudo dhcpd -r`` y pedimos otra usando el comando ``sudo dhcpd `` y nos aseguramos de que nos hayan dado la IP deseada 192.168.57.100.
 
 ```
 vagrant@bookworm:~$ sudo dhclient -r
