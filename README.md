@@ -167,7 +167,7 @@ subnet 192.168.57.0 netmask 255.255.255.0 {
     option broadcast-address 192.168.57.255;
     option routers 192.168.57.2;
     option domain-name-servers 192.168.57.3, 4.4.4.4;
-    option domain-name "TU NOMBRE.test";
+    option domain-name "Jalejandro.test";
 }
 ```
 Esto dira que de la red 192.168.57.0 asignara el rango de IPs que pongamos mediante  nuestro servidor DHCP y la mascara de subred y la direccion broadcast. Tambien asiganara un tiempo maximo de concesion para IP.
