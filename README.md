@@ -107,3 +107,32 @@ This environment represents multiple VMs. The VMs are all listed
 above with their current state. For more information about a specific
 VM, run `vagrant status NAME`.
 ```
+## Maquina virtual servidor
+
+Ahora procederemos a entrar a la maquina servidor  mediante **"vagrant ssh nombremaquina"**. Una vez dentro usamos ip route para ver la asignaciones realizadas.
+```
+vagrant@bookworm:~$ ip route
+default via 10.0.2.2 dev eth0 
+10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 
+10.209.0.0/16 dev eth1 proto kernel scope link src 10.209.69.1 
+192.168.57.0/24 dev eth2 proto kernel scope link src 192.168.57.10 
+vagrant@bookworm:~$ 
+
+
+```
+
+Ahora probamos la conectivdad haciendo ping.
+
+```
+vagrant@bookworm:~$ ping -c 4 192.168.57.10
+PING 192.168.57.10 (192.168.57.10) 56(84) bytes of data.
+64 bytes from 192.168.57.10: icmp_seq=1 ttl=64 time=0.014 ms
+64 bytes from 192.168.57.10: icmp_seq=2 ttl=64 time=0.081 ms
+64 bytes from 192.168.57.10: icmp_seq=3 ttl=64 time=0.039 ms
+64 bytes from 192.168.57.10: icmp_seq=4 ttl=64 time=0.057 ms
+
+--- 192.168.57.10 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3463ms
+rtt min/avg/max/mdev = 0.014/0.047/0.081/0.024 ms
+
+```
