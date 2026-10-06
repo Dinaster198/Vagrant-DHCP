@@ -16,6 +16,26 @@ Vagrant.configure("2") do |config|
       ip: "192.168.57.10",
       virtualbox__intnet: "intnet"
 
+
+
+
+
+
+
+       # Instalar y configurar DHCP
+    srv.vm.provision "shell", inline: <<-SHELL
+      apt update
+      apt install -y isc-dhcp-server
+
+      cp /vagrant/dhcpd.conf /etc/dhcp/dhcpd.conf
+
+      sed -i 's/^INTERFACESv4=.*/INTERFACESv4="eth2"/' /etc/default/isc-dhcp-server
+
+      dhcpd -t
+      systemctl enable isc-dhcp-server
+      systemctl restart isc-dhcp-server
+    SHELL
+    
   end
 
 
